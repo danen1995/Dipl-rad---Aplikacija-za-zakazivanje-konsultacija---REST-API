@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author Dane
  */
-public class SkolskaGodinaDTO  {
+public class SkolskaGodinaDTO {
 
     private BigDecimal idSkolskeGodine;
     private String skolskaGodina;
@@ -25,12 +25,10 @@ public class SkolskaGodinaDTO  {
     public SkolskaGodinaDTO() {
     }
 
-    public SkolskaGodinaDTO(BigDecimal idSkolskeGodine, String skolskaGodina, String semestar, Collection<PokrivenostNastaveDTO> pokrivenostNastaveCollection, Collection<KalendarDTO> kalendarCollection) {
+    public SkolskaGodinaDTO(BigDecimal idSkolskeGodine, String skolskaGodina, String semestar) {
         this.idSkolskeGodine = idSkolskeGodine;
         this.skolskaGodina = skolskaGodina;
         this.semestar = semestar;
-//        this.pokrivenostNastaveCollection = pokrivenostNastaveCollection;
-//        this.kalendarCollection = kalendarCollection;
     }
 
     public BigDecimal getIdSkolskeGodine() {
@@ -72,6 +70,4 @@ public class SkolskaGodinaDTO  {
 //    public void setKalendarCollection(Collection<KalendarDTO> kalendarCollection) {
 //        this.kalendarCollection = kalendarCollection;
 //    }
-
-
 }

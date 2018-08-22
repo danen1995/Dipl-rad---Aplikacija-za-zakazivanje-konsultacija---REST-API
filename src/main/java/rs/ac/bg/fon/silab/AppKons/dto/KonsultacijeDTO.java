@@ -17,24 +17,15 @@ public class KonsultacijeDTO extends DogadjajDTO {
 
     private BigInteger kapacitet;
     private BigInteger brojZakazanih;
-    private Collection<StudentKonsultacijeDTO> studentKonsultacijeCollection;
+//    private Collection<StudentKonsultacijeDTO> studentKonsultacijeCollection;
 
     public KonsultacijeDTO() {
     }
 
-    public KonsultacijeDTO(BigInteger kapacitet, BigInteger brojZakazanih, Collection<StudentKonsultacijeDTO> studentKonsultacijeCollection, DogadjajPKDTO dogadjajPK, Date datumIVremePocetka, Date datumIVremeZavrsetka, String mestoOdrzavanja, KalendarDTO kalendar, TipDogadjajaDTO idTipaDogadjaja) {
+    public KonsultacijeDTO(BigInteger kapacitet, BigInteger brojZakazanih, DogadjajPKDTO dogadjajPK, Date datumIVremePocetka, Date datumIVremeZavrsetka, String mestoOdrzavanja, KalendarDTO kalendar, TipDogadjajaDTO idTipaDogadjaja) {
         super(dogadjajPK, datumIVremePocetka, datumIVremeZavrsetka, mestoOdrzavanja, kalendar, idTipaDogadjaja);
         this.kapacitet = kapacitet;
         this.brojZakazanih = brojZakazanih;
-        this.studentKonsultacijeCollection = studentKonsultacijeCollection;
-    }
-
-    public Collection<StudentKonsultacijeDTO> getStudentKonsultacijeCollection() {
-        return studentKonsultacijeCollection;
-    }
-
-    public void setStudentKonsultacijeCollection(Collection<StudentKonsultacijeDTO> studentKonsultacijeCollection) {
-        this.studentKonsultacijeCollection = studentKonsultacijeCollection;
     }
 
     public BigInteger getKapacitet() {

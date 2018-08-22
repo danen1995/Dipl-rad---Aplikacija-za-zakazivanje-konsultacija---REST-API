@@ -19,14 +19,12 @@ public class TipDogadjajaDTO {
     private String nazivTipaDogadjaja;
 
 //    private Collection<DogadjajDTO> dogadjajCollection;
-
     public TipDogadjajaDTO() {
     }
 
-    public TipDogadjajaDTO(BigDecimal idTipaDogadjaja, String nazivTipaDogadjaja, Collection<DogadjajDTO> dogadjajCollection) {
+    public TipDogadjajaDTO(BigDecimal idTipaDogadjaja, String nazivTipaDogadjaja) {
         this.idTipaDogadjaja = idTipaDogadjaja;
         this.nazivTipaDogadjaja = nazivTipaDogadjaja;
-//        this.dogadjajCollection = dogadjajCollection;
     }
 
     public BigDecimal getIdTipaDogadjaja() {
@@ -52,6 +50,4 @@ public class TipDogadjajaDTO {
 //    public void setDogadjajCollection(Collection<DogadjajDTO> dogadjajCollection) {
 //        this.dogadjajCollection = dogadjajCollection;
 //    }
-
-
 }

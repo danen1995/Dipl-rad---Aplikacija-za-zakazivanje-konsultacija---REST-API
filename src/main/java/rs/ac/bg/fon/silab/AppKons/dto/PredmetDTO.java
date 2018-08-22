@@ -27,12 +27,10 @@ public class PredmetDTO {
     public PredmetDTO() {
     }
 
-    public PredmetDTO(BigDecimal idPredmeta, String naziv, BigInteger espbBodovi, String godinaStudija, List<PokrivenostNastaveDTO> pokrivenostNastaveCollection, Collection<NastavaDTO> nastavaCollection) {
+    public PredmetDTO(String naziv, BigInteger espbBodovi, String godinaStudija) {
         this.naziv = naziv;
         this.espbBodovi = espbBodovi;
         this.godinaStudija = godinaStudija;
-//        this.pokrivenostNastaveCollection = pokrivenostNastaveCollection;
-//        this.nastavaCollection = nastavaCollection;
     }
 
     public String getNaziv() {

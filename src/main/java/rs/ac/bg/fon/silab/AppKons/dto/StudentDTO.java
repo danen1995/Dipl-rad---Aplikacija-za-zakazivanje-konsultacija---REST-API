@@ -40,7 +40,7 @@ public class StudentDTO {
     public StudentDTO() {
     }
 
-    public StudentDTO(String brojIndeksa, String ime, String prezime, Short godinaUpisa, String smer, String brojTelefona, String email, Collection<StudentKonsultacijeDTO> studentKonsultacijeCollection, Collection<KorisnickiNalogDTO> korisnickiNalogCollection) {
+    public StudentDTO(String brojIndeksa, String ime, String prezime, Short godinaUpisa, String smer, String brojTelefona, String email) {
         this.brojIndeksa = brojIndeksa;
         this.ime = ime;
         this.prezime = prezime;
@@ -48,8 +48,6 @@ public class StudentDTO {
         this.smer = smer;
         this.brojTelefona = brojTelefona;
         this.email = email;
-//        this.studentKonsultacijeCollection = studentKonsultacijeCollection;
-//        this.korisnickiNalogCollection = korisnickiNalogCollection;
     }
 
     public String getBrojIndeksa() {
@@ -124,5 +122,4 @@ public class StudentDTO {
 //        this.korisnickiNalogCollection = korisnickiNalogCollection;
 //    }
 
-  
 }

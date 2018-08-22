@@ -27,16 +27,13 @@ public class NastavnikDTO {
     public NastavnikDTO() {
     }
 
-    public NastavnikDTO(String jmbg, String ime, String prezime, String email, String brojTelefona, String kabinet, Collection<PokrivenostNastaveDTO> pokrivenostNastaveCollection, Collection<KalendarDTO> kalendarCollection, Collection<KorisnickiNalogDTO> korisnickiNalogCollection) {
+    public NastavnikDTO(String jmbg, String ime, String prezime, String email, String brojTelefona, String kabinet) {
         this.jmbg = jmbg;
         this.ime = ime;
         this.prezime = prezime;
         this.email = email;
         this.brojTelefona = brojTelefona;
         this.kabinet = kabinet;
-//        this.pokrivenostNastaveCollection = pokrivenostNastaveCollection;
-//        this.kalendarCollection = kalendarCollection;
-//        this.korisnickiNalogCollection = korisnickiNalogCollection;
     }
 
     public String getJmbg() {
@@ -110,6 +107,4 @@ public class NastavnikDTO {
 //    public void setKorisnickiNalogCollection(Collection<KorisnickiNalogDTO> korisnickiNalogCollection) {
 //        this.korisnickiNalogCollection = korisnickiNalogCollection;
 //    }
-
-
 }

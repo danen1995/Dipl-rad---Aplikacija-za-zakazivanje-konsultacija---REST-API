@@ -25,11 +25,10 @@ public class KalendarDTO {
     public KalendarDTO() {
     }
 
-    public KalendarDTO(BigDecimal idKalendara, NastavnikDTO nastavnik, SkolskaGodinaDTO idSkolskeGodine, Collection<DogadjajDTO> dogadjajCollection) {
+    public KalendarDTO(BigDecimal idKalendara, NastavnikDTO nastavnik, SkolskaGodinaDTO idSkolskeGodine) {
         this.idKalendara = idKalendara;
         this.nastavnik = nastavnik;
         this.idSkolskeGodine = idSkolskeGodine;
-//        this.dogadjajCollection = dogadjajCollection;
     }
 
     public BigDecimal getIdKalendara() {
