@@ -16,7 +16,6 @@ public class NastavaDTO extends DogadjajDTO {
 
     private String ulogaNastave;
     private PredmetDTO idPredmeta;
-
     public NastavaDTO() {
     }
 

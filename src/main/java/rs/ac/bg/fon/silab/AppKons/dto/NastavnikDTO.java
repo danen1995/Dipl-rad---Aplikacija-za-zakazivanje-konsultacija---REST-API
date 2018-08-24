@@ -20,6 +20,7 @@ public class NastavnikDTO {
     private String email;
     private String brojTelefona;
     private String kabinet;
+    private String slika;
 //    private Collection<PokrivenostNastaveDTO> pokrivenostNastaveCollection;
 //    private Collection<KalendarDTO> kalendarCollection;
 //    private Collection<KorisnickiNalogDTO> korisnickiNalogCollection;
@@ -27,13 +28,22 @@ public class NastavnikDTO {
     public NastavnikDTO() {
     }
 
-    public NastavnikDTO(String jmbg, String ime, String prezime, String email, String brojTelefona, String kabinet) {
+    public NastavnikDTO(String jmbg, String ime, String prezime, String email, String brojTelefona, String kabinet, String slika) {
         this.jmbg = jmbg;
         this.ime = ime;
         this.prezime = prezime;
         this.email = email;
         this.brojTelefona = brojTelefona;
         this.kabinet = kabinet;
+        this.slika = slika;
+    }
+
+    public String getSlika() {
+        return slika;
+    }
+
+    public void setSlika(String slika) {
+        this.slika = slika;
     }
 
     public String getJmbg() {

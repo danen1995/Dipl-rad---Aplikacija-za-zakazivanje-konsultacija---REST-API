@@ -51,8 +51,7 @@ public class KorisnickiNalogService {
     }
 
     public List<KorisnickiNalogDTO> findAll() {
-        List<KorisnickiNalog> nalozi = new ArrayList<>();
-        userDAO.findAll().forEach(nalozi::add);
+        List<KorisnickiNalog> nalozi = userDAO.findAll();
         List<KorisnickiNalogDTO> naloziDTO = new ArrayList<>();
         for (KorisnickiNalog nalog : nalozi) {
             naloziDTO.add(mapper.korisnickiNalogToKorisnickiNalogDTO(nalog));

@@ -53,6 +53,8 @@ public class Nastavnik implements Serializable {
     private String brojTelefona;
     @Column(name = "KABINET")
     private String kabinet;
+    @Column(name = "SLIKA")
+    private String slika;
     @JsonBackReference(value = "pokrivenostNastaveCollection")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "nastavnik")
     private Collection<PokrivenostNastave> pokrivenostNastaveCollection;
@@ -112,6 +114,14 @@ public class Nastavnik implements Serializable {
 
     public String getKabinet() {
         return kabinet;
+    }
+
+    public void setSlika(String slika) {
+        this.slika = slika;
+    }
+
+    public String getSlika() {
+        return slika;
     }
 
     public void setKabinet(String kabinet) {
