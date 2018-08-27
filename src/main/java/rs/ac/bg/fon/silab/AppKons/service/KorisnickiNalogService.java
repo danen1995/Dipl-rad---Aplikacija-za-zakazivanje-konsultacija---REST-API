@@ -5,14 +5,21 @@
  */
 package rs.ac.bg.fon.silab.AppKons.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rs.ac.bg.fon.silab.AppKons.dao.KorisnickiNalogRepository;
+import rs.ac.bg.fon.silab.AppKons.dao.NastavnikRepository;
+import rs.ac.bg.fon.silab.AppKons.dao.StudentRepository;
 import rs.ac.bg.fon.silab.AppKons.dto.KorisnickiNalogDTO;
+import rs.ac.bg.fon.silab.AppKons.dto.NastavnikDTO;
+import rs.ac.bg.fon.silab.AppKons.dto.UserDTO;
 import rs.ac.bg.fon.silab.AppKons.entities.KorisnickiNalog;
+import rs.ac.bg.fon.silab.AppKons.entities.Nastavnik;
 import rs.ac.bg.fon.silab.AppKons.mapper.GenericMapper;
 
 /**
@@ -40,14 +47,12 @@ public class KorisnickiNalogService {
         return userDAO.findByKorisnickoIme(korisnickoIme);
     }
 
-    public String authenticate(KorisnickiNalogDTO user) throws Exception {
+    public Object authenticate(KorisnickiNalogDTO user) throws Exception {
         KorisnickiNalog userDB = userDAO.login(user.getKorisnickoIme(), user.getLozinka());
         if (userDB == null) {
             throw new Exception("Unknown user.");
         }
-//        String token = userDB.getKorisnickoIme();
-//        return new String(Base64.encodeBase64(token.getBytes()));
-        return userDB.getKorisnickoIme();
+        return userDB;
     }
 
     public List<KorisnickiNalogDTO> findAll() {
@@ -58,6 +63,16 @@ public class KorisnickiNalogService {
         }
         return naloziDTO;
 
+    }
+
+    public String tipUsera(BigDecimal korID) {
+        KorisnickiNalog kn = userDAO.nadjiPoIdu(korID);
+        System.out.println(kn.getKorisnickoIme());
+        if(kn.getStudent() == null){
+            return kn.getNastavnik().getJmbg();
+        }else{
+            return kn.getStudent().getBrojIndeksa();
+        }
     }
 
 }

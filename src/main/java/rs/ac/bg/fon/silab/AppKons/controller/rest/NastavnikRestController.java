@@ -15,40 +15,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import rs.ac.bg.fon.silab.AppKons.dto.KonsultacijeDTO;
+import rs.ac.bg.fon.silab.AppKons.dto.NastavnikDTO;
+import rs.ac.bg.fon.silab.AppKons.entities.Nastavnik;
+import rs.ac.bg.fon.silab.AppKons.entities.Student;
 import rs.ac.bg.fon.silab.AppKons.service.KonsultacijeService;
+import rs.ac.bg.fon.silab.AppKons.service.NastavnikService;
 
 @RestController
-@RequestMapping("/konsultacije")
+@RequestMapping("/nastavnik")
 @CrossOrigin
-public class KonsultacijeRestController {
+public class NastavnikRestController {
 
     @Autowired
-    KonsultacijeService service;
+    NastavnikService service;
 
     @GetMapping("/sve")
     public @ResponseBody
-    Object vratiSveKonsultacije() {
-        List<KonsultacijeDTO> sveKons = service.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(sveKons);
+    Object vratiSveNastavnike() {
+        List<NastavnikDTO> sviNas = service.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(sviNas);
     }
-
-    @GetMapping("/zaNastavnika")
+    
+    @GetMapping("/getNastavnik")
     public @ResponseBody
-    Object vratiKonsultacijeZaNastavnika(@RequestParam(value = "JMBGNastavnika") String JMBGNastavnika) {
-        List<KonsultacijeDTO> konsZaNastavnika = service.vratiKonsultacijeZaNastavnika(JMBGNastavnika);
-        return ResponseEntity.status(HttpStatus.OK).body(konsZaNastavnika);
-
+    NastavnikDTO vratiNastavnika(@RequestParam(value = "jmbg") String jmbg) {
+        return service.vratiNastavnika(jmbg);
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    @CrossOrigin
-    public @ResponseBody
-    Object generisiKonsultacije(@RequestBody KonsultacijeDTO konsultacije) {
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(service.generisi(konsultacije));
-        } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greska.");
-
-        }
-    }
 }

@@ -14,4 +14,8 @@ public interface KorisnickiNalogRepository extends JpaRepository<KorisnickiNalog
 
     @Query("SELECT k FROM KorisnickiNalog k where k.korisnickoIme = ?1")
     KorisnickiNalog findByKorisnickoIme(String korisnickoIme);
+    @Query("SELECT k FROM KorisnickiNalog k where k.idKorisnickogNaloga = ?1")
+    KorisnickiNalog nadjiPoIdu(BigDecimal x);
+
+    
 }

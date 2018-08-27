@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author Dane
  */
-public class NastavnikDTO {
+public class NastavnikDTO extends UserDTO{
 
     private String jmbg;
     private String ime;
