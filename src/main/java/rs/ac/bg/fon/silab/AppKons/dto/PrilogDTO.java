@@ -14,6 +14,7 @@ import java.math.BigDecimal;
  */
 public class PrilogDTO {
 
+    private BigDecimal idPriloga;
     private String naziv;
     private String lokacija;
     private StudentKonsultacijeDTO studentKonsultacije;
@@ -22,11 +23,19 @@ public class PrilogDTO {
     }
 
     public PrilogDTO(BigDecimal idPriloga, String naziv, String lokacija, StudentKonsultacijeDTO studentKonsultacije) {
+        this.idPriloga = idPriloga;
         this.naziv = naziv;
         this.lokacija = lokacija;
         this.studentKonsultacije = studentKonsultacije;
     }
 
+    public BigDecimal getIdPriloga() {
+        return idPriloga;
+    }
+
+    public void setIdPriloga(BigDecimal idPriloga) {
+        this.idPriloga = idPriloga;
+    }
 
     public String getNaziv() {
         return naziv;
@@ -51,6 +60,5 @@ public class PrilogDTO {
     public void setStudentKonsultacije(StudentKonsultacijeDTO studentKonsultacije) {
         this.studentKonsultacije = studentKonsultacije;
     }
-
 
 }

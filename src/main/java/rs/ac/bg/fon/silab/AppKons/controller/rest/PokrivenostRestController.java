@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import rs.ac.bg.fon.silab.AppKons.dto.PokrivenostNastaveDTO;
 import rs.ac.bg.fon.silab.AppKons.entities.PokrivenostNastave;
 import rs.ac.bg.fon.silab.AppKons.service.PokrivenostService;
 
@@ -21,7 +22,7 @@ public class PokrivenostRestController {
 
     @RequestMapping("/zaNastavnika/{JMBGNastavnika}")
     public @ResponseBody
-    List<PokrivenostNastave> vratiPokrivenostiZaNastavnika(@PathVariable String JMBGNastavnika) {
+    List<PokrivenostNastaveDTO> vratiPokrivenostiZaNastavnika(@PathVariable String JMBGNastavnika) {
         return service.findByJmbgNastavnika(JMBGNastavnika);
     }
 

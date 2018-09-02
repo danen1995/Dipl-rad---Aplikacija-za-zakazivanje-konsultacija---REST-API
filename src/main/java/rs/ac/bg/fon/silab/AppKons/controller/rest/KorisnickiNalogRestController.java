@@ -40,6 +40,7 @@ public class KorisnickiNalogRestController {
 
         }
     }
+
     @CrossOrigin
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public @ResponseBody
@@ -47,7 +48,16 @@ public class KorisnickiNalogRestController {
         try {
             return service.register(user);
         } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greska. Ne postoji takav Student/Nastavnik.");
+            System.out.println("Message" + ex.getMessage());
+            if (ex.getMessage().contains("[DIPLOMSKI.KORISNICKI_NALOG_UK1]")) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Korisnik sa tim korisnickim imenom vec postoji!");
+            }
+            if (ex.getMessage().contains("[DIPLOMSKI.KORISNICKI_NALOG_UK3]")) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Korisnik sa ovim brojem indeksa je vec registrovan.");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nepoznata greska! Proverite konekciju.");
+
+            }
 
         }
     }
@@ -60,10 +70,8 @@ public class KorisnickiNalogRestController {
     }
 
     @RequestMapping(value = "/tipUsera", method = RequestMethod.GET)
-    public 
-    String tipUsera(@RequestParam(value = "korID") BigDecimal korID) {
+    public String tipUsera(@RequestParam(value = "korID") BigDecimal korID) {
         return service.tipUsera(korID);
     }
 
-   
 }

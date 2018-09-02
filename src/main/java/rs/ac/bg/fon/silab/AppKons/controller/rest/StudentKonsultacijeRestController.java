@@ -1,5 +1,6 @@
 package rs.ac.bg.fon.silab.AppKons.controller.rest;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,6 +42,18 @@ public class StudentKonsultacijeRestController {
         return service.findByJMBGNastavnika(JMBGNastavnika);
     }
 
+    @GetMapping("/getForEvent")
+    public @ResponseBody
+    List<StudentKonsultacijeDTO> vratiSveZaDogadjaj(@RequestParam BigDecimal idKalendara, @RequestParam BigInteger idDogadjaja) {
+        return service.vratiSveZaDogadjaj(idKalendara, idDogadjaja);
+    }
+
+    @GetMapping("/get")
+    public @ResponseBody
+    StudentKonsultacijeDTO vratiPoIDu(@RequestParam BigInteger idKalendara, @RequestParam BigInteger idDogadjaja, @RequestParam String brojIndeksaStudenta) {
+        return service.vratiPoIDu(idKalendara, idDogadjaja, brojIndeksaStudenta);
+    }
+
     @RequestMapping(value = "izbrisi", method = RequestMethod.DELETE)
     public void izbrisiStudentKonsultacije(@RequestParam BigInteger idKalendara, @RequestParam BigInteger idDogadjaja, @RequestParam String brojIndeksaStudenta) {
         service.izbrisiStudentKonsultacije(idKalendara, idDogadjaja, brojIndeksaStudenta);
@@ -52,7 +66,17 @@ public class StudentKonsultacijeRestController {
             return ResponseEntity.status(HttpStatus.OK).body(service.zakazi(konsultacije));
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greska. Ne postoji takav Student/Nastavnik.");
-
         }
     }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public @ResponseBody
+    Object azurirajKonsultacije(@RequestBody StudentKonsultacijeDTO konsultacije) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.azurirajKonsultacije(konsultacije));
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greska prilikom azuriranja konsultacija.");
+        }
+    }
+
 }

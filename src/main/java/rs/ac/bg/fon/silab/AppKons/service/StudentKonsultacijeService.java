@@ -5,6 +5,7 @@
  */
 package rs.ac.bg.fon.silab.AppKons.service;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,10 @@ public class StudentKonsultacijeService {
         return repository.findAll();
     }
 
+    public StudentKonsultacijeDTO vratiPoIDu(BigInteger idKalendara, BigInteger idDogadjaja, String brojIndeksaStudenta) {
+        return mapper.studentKonsultacijeToStudentKonsultacijeDTO(repository.findById(new StudentKonsultacijePK(idKalendara, idDogadjaja, brojIndeksaStudenta)).get());
+    }
+
     public List<StudentKonsultacijeDTO> findByBrojIndeksaStudenta(String brojIndeksa) {
         List<StudentKonsultacije> studentKons = repository.findByBrojIndeksaStudenta(brojIndeksa);
         List<StudentKonsultacijeDTO> studentKonsDTO = new ArrayList<>();
@@ -62,4 +67,18 @@ public class StudentKonsultacijeService {
     public StudentKonsultacijeDTO zakazi(StudentKonsultacijeDTO konsultacije) {
         return mapper.studentKonsultacijeToStudentKonsultacijeDTO(repository.save(mapper.studentKonsultacijeDTOToStudentKonsultacije(konsultacije)));
     }
+
+    public StudentKonsultacijeDTO azurirajKonsultacije(StudentKonsultacijeDTO konsultacije) {
+        return mapper.studentKonsultacijeToStudentKonsultacijeDTO(repository.save(mapper.studentKonsultacijeDTOToStudentKonsultacije(konsultacije)));
+    }
+
+    public List<StudentKonsultacijeDTO> vratiSveZaDogadjaj(BigDecimal idKalendara, BigInteger idDogadjaja) {
+        List<StudentKonsultacije> studentKons = repository.vratiSveZaDogadjaj(idKalendara, idDogadjaja);
+        List<StudentKonsultacijeDTO> studentKonsDTO = new ArrayList<>();
+        for (StudentKonsultacije studentKon : studentKons) {
+            studentKonsDTO.add(mapper.studentKonsultacijeToStudentKonsultacijeDTO(studentKon));
+        }
+        return studentKonsDTO;
+    }
+
 }

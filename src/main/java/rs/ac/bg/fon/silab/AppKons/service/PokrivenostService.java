@@ -5,13 +5,16 @@
  */
 package rs.ac.bg.fon.silab.AppKons.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rs.ac.bg.fon.silab.AppKons.dao.KonsultacijeRepository;
 import rs.ac.bg.fon.silab.AppKons.dao.PokrivenostRepository;
+import rs.ac.bg.fon.silab.AppKons.dto.PokrivenostNastaveDTO;
 import rs.ac.bg.fon.silab.AppKons.entities.Konsultacije;
 import rs.ac.bg.fon.silab.AppKons.entities.PokrivenostNastave;
+import rs.ac.bg.fon.silab.AppKons.mapper.GenericMapper;
 
 /**
  *
@@ -19,7 +22,8 @@ import rs.ac.bg.fon.silab.AppKons.entities.PokrivenostNastave;
  */
 @Service
 public class PokrivenostService {
-
+    @Autowired
+    GenericMapper mapper;
     @Autowired
     PokrivenostRepository repository;
 
@@ -27,8 +31,13 @@ public class PokrivenostService {
         return repository.findAll();
     }
 
-    public List<PokrivenostNastave> findByJmbgNastavnika(String JMBGNastavnika) {
-        return repository.findByJmbgNastavnika(JMBGNastavnika);
+    public List<PokrivenostNastaveDTO> findByJmbgNastavnika(String JMBGNastavnika) {
+        List<PokrivenostNastave> pokrNast = repository.findByJmbgNastavnika(JMBGNastavnika);
+        List<PokrivenostNastaveDTO> pokrNastDTO = new ArrayList<>();
+        for (PokrivenostNastave pokrivenostNastave : pokrNast) {
+            pokrNastDTO.add(mapper.pokrivenostNastaveToPokrivenostNastaveDTO(pokrivenostNastave));
+        }
+        return pokrNastDTO;
     }
     
     

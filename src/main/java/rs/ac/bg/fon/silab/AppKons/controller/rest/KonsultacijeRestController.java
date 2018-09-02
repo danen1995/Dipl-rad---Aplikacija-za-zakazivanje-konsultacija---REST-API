@@ -1,7 +1,16 @@
 package rs.ac.bg.fon.silab.AppKons.controller.rest;
 
+import java.math.BigInteger;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +46,6 @@ public class KonsultacijeRestController {
     Object vratiKonsultacijeZaNastavnika(@RequestParam(value = "JMBGNastavnika") String JMBGNastavnika) {
         List<KonsultacijeDTO> konsZaNastavnika = service.vratiKonsultacijeZaNastavnika(JMBGNastavnika);
         return ResponseEntity.status(HttpStatus.OK).body(konsZaNastavnika);
-
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -48,7 +56,37 @@ public class KonsultacijeRestController {
             return ResponseEntity.status(HttpStatus.OK).body(service.generisi(konsultacije));
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greska.");
+        }
+    }
 
+    @RequestMapping(value = "/ispis", method = RequestMethod.GET)
+    @CrossOrigin
+    public @ResponseBody
+    Object generisiListuKonsultacija(@RequestParam Integer dan,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date datumOd,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date datumDo
+    //            @RequestParam @DateTimeFormat(pattern = "'T'HH:mm:ss") Time vremePocetka,
+    //            @RequestParam @DateTimeFormat(pattern = "'T'HH:mm:ss") Time vremeZavrsetka
+    ) {
+        try {
+            List<String> lista = new ArrayList<>();
+            Calendar start = Calendar.getInstance();
+            start.setTime(datumOd);
+            Calendar end = Calendar.getInstance();
+            end.setTime(datumDo);
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            for (Date date = start.getTime(); start.before(end); start.add(Calendar.DATE, 1), date = start.getTime()) {
+                System.out.println(date);
+                System.out.println(date.getDay());
+                if (date.getDay()== dan) {
+                    lista.add(df.format(date));
+                }
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(lista);
+
+
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greska.");
         }
     }
 }

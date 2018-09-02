@@ -16,6 +16,7 @@ public class PokrivenostNastaveDTO {
 
     private PokrivenostNastavePKDTO pokrivenostNastavePK;
 
+    private PokrivenostNastavePKDTO pokrivenostNastavePKDTO;
     private String uloga;
     private NastavnikDTO nastavnik;
     private PredmetDTO predmet;
@@ -24,7 +25,9 @@ public class PokrivenostNastaveDTO {
     public PokrivenostNastaveDTO() {
     }
 
-    public PokrivenostNastaveDTO(PokrivenostNastavePK pokrivenostNastavePK, String uloga, NastavnikDTO nastavnik, PredmetDTO predmet, SkolskaGodinaDTO idSkolskeGodine) {
+    public PokrivenostNastaveDTO(PokrivenostNastavePKDTO pokrivenostNastavePK, PokrivenostNastavePKDTO pokrivenostNastavePKDTO, String uloga, NastavnikDTO nastavnik, PredmetDTO predmet, SkolskaGodinaDTO idSkolskeGodine) {
+        this.pokrivenostNastavePK = pokrivenostNastavePK;
+        this.pokrivenostNastavePKDTO = pokrivenostNastavePKDTO;
         this.uloga = uloga;
         this.nastavnik = nastavnik;
         this.predmet = predmet;
@@ -61,6 +64,14 @@ public class PokrivenostNastaveDTO {
 
     public void setIdSkolskeGodine(SkolskaGodinaDTO idSkolskeGodine) {
         this.idSkolskeGodine = idSkolskeGodine;
+    }
+
+    public PokrivenostNastavePKDTO getPokrivenostNastavePKDTO() {
+        return pokrivenostNastavePKDTO;
+    }
+
+    public void setPokrivenostNastavePK(PokrivenostNastavePKDTO pokrivenostNastavePK) {
+        this.pokrivenostNastavePK = pokrivenostNastavePK;
     }
 
 }
