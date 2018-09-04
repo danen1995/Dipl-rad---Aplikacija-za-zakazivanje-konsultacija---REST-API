@@ -7,7 +7,7 @@ import rs.ac.bg.fon.silab.AppKons.entities.Konsultacije;
 import rs.ac.bg.fon.silab.AppKons.entities.KorisnickiNalog;
 import rs.ac.bg.fon.silab.AppKons.entities.Student;
 
-public interface KorisnickiNalogRepository extends JpaRepository<KorisnickiNalog, BigDecimal> {
+public interface KorisnickiNalogDAO extends JpaRepository<KorisnickiNalog, BigDecimal> {
 
     @Query("SELECT k FROM KorisnickiNalog k WHERE k.korisnickoIme = ?1 and k.lozinka = ?2")
     public KorisnickiNalog login(String korisnickoIme, String korisnickaSifra);

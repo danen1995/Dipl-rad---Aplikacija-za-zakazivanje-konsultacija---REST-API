@@ -7,13 +7,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import rs.ac.bg.fon.silab.AppKons.entities.DogadjajPK;
-import rs.ac.bg.fon.silab.AppKons.entities.Kalendar;
 import rs.ac.bg.fon.silab.AppKons.entities.Konsultacije;
+import rs.ac.bg.fon.silab.AppKons.entities.Prilog;
 
-public interface KalendarRepository extends JpaRepository<Kalendar, BigDecimal> {
+public interface PrilogDAO extends JpaRepository<Prilog, BigDecimal> {
 
-    @Query("SELECT k FROM Kalendar k INNER JOIN Nastavnik n on k.nastavnik.jmbg = n.jmbg WHERE n.jmbg=?1")
-    public List<Kalendar> vratiKalendareZaNastavnika(String JMBGNastavnika);
-
-   
+  
 }

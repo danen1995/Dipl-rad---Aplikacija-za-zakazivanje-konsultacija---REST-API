@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rs.ac.bg.fon.silab.AppKons.dao.KonsultacijeRepository;
-import rs.ac.bg.fon.silab.AppKons.dao.PrilogRepository;
 import rs.ac.bg.fon.silab.AppKons.dto.KonsultacijeDTO;
 import rs.ac.bg.fon.silab.AppKons.dto.PrilogDTO;
 import rs.ac.bg.fon.silab.AppKons.entities.DogadjajPK;
 import rs.ac.bg.fon.silab.AppKons.entities.Konsultacije;
 import rs.ac.bg.fon.silab.AppKons.entities.Prilog;
 import rs.ac.bg.fon.silab.AppKons.mapper.GenericMapper;
+import rs.ac.bg.fon.silab.AppKons.dao.KonsultacijeDAO;
+import rs.ac.bg.fon.silab.AppKons.dao.PrilogDAO;
 
 /**
  *
@@ -29,7 +29,7 @@ public class PrilogService {
     @Autowired
     GenericMapper mapper;
     @Autowired
-    PrilogRepository repository;
+    PrilogDAO repository;
 
     public PrilogDTO dodajPrilog(PrilogDTO prilogDTO) {
         Prilog prilog = mapper.prilogDTOToPrilog(prilogDTO);

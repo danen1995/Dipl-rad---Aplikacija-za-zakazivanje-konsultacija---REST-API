@@ -1,5 +1,6 @@
 package rs.ac.bg.fon.silab.AppKons.controller.rest;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Time;
 import java.text.DateFormat;
@@ -45,6 +46,12 @@ public class KonsultacijeRestController {
     public @ResponseBody
     Object vratiKonsultacijeZaNastavnika(@RequestParam(value = "JMBGNastavnika") String JMBGNastavnika) {
         List<KonsultacijeDTO> konsZaNastavnika = service.vratiKonsultacijeZaNastavnika(JMBGNastavnika);
+        return ResponseEntity.status(HttpStatus.OK).body(konsZaNastavnika);
+    }
+    @GetMapping("/zaNastavnikovKalendar")
+    public @ResponseBody
+    Object vratiKonsultacijeZaNastavnikovKalendar(@RequestParam(value = "jmbg") String jmbg, @RequestParam(value = "idKalendara") BigDecimal idKalendara ) {
+        List<KonsultacijeDTO> konsZaNastavnika = service.vratiKonsultacijeZaNastavnikovKalendar(jmbg, idKalendara);
         return ResponseEntity.status(HttpStatus.OK).body(konsZaNastavnika);
     }
 

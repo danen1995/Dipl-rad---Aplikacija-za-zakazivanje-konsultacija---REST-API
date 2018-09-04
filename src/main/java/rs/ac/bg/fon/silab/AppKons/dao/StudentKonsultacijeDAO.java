@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import rs.ac.bg.fon.silab.AppKons.entities.StudentKonsultacije;
 import rs.ac.bg.fon.silab.AppKons.entities.StudentKonsultacijePK;
 
-public interface StudentKonsultacijeRepository extends JpaRepository<StudentKonsultacije, StudentKonsultacijePK> {
+public interface StudentKonsultacijeDAO extends JpaRepository<StudentKonsultacije, StudentKonsultacijePK> {
 
     public List<StudentKonsultacije> findByBrojIndeksaStudenta(String brojIndeksa);
 

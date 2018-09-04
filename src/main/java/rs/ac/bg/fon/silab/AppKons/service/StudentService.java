@@ -8,9 +8,9 @@ package rs.ac.bg.fon.silab.AppKons.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rs.ac.bg.fon.silab.AppKons.dao.KonsultacijeRepository;
-import rs.ac.bg.fon.silab.AppKons.dao.StudentRepository;
 import rs.ac.bg.fon.silab.AppKons.entities.Student;
+import rs.ac.bg.fon.silab.AppKons.dao.KonsultacijeDAO;
+import rs.ac.bg.fon.silab.AppKons.dao.StudentDAO;
 
 /**
  *
@@ -20,7 +20,7 @@ import rs.ac.bg.fon.silab.AppKons.entities.Student;
 public class StudentService {
 
     @Autowired
-    StudentRepository repository;
+    StudentDAO repository;
 
     public List<Student> findAll() {
         return repository.findAll();

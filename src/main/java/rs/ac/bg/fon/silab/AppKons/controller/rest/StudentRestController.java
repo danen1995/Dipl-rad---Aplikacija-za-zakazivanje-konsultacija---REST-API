@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import rs.ac.bg.fon.silab.AppKons.dao.StudentRepository;
 
 import rs.ac.bg.fon.silab.AppKons.entities.Student;
 import rs.ac.bg.fon.silab.AppKons.service.StudentService;
+import rs.ac.bg.fon.silab.AppKons.dao.StudentDAO;
 
 @RestController
 @RequestMapping("/student")

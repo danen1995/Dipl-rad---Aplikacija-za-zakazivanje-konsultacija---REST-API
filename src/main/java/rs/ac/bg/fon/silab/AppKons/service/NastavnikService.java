@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rs.ac.bg.fon.silab.AppKons.dao.KonsultacijeRepository;
-import rs.ac.bg.fon.silab.AppKons.dao.NastavnikRepository;
 import rs.ac.bg.fon.silab.AppKons.dto.NastavnikDTO;
 import rs.ac.bg.fon.silab.AppKons.entities.Nastavnik;
 import rs.ac.bg.fon.silab.AppKons.entities.Student;
 import rs.ac.bg.fon.silab.AppKons.mapper.GenericMapper;
+import rs.ac.bg.fon.silab.AppKons.dao.KonsultacijeDAO;
+import rs.ac.bg.fon.silab.AppKons.dao.NastavnikDAO;
 
 /**
  *
@@ -27,7 +27,7 @@ public class NastavnikService {
     @Autowired
     GenericMapper mapper;
     @Autowired
-    NastavnikRepository repository;
+    NastavnikDAO repository;
     
     public List<NastavnikDTO> findAll() {
         List<Nastavnik> nast = repository.findAll();
