@@ -20,6 +20,7 @@ import rs.ac.bg.fon.silab.AppKons.dto.NastavnikDTO;
 import rs.ac.bg.fon.silab.AppKons.dto.UserDTO;
 import rs.ac.bg.fon.silab.AppKons.entities.KorisnickiNalog;
 import rs.ac.bg.fon.silab.AppKons.service.KorisnickiNalogService;
+import rs.ac.bg.fon.silab.AppKons.serviceImpl.KorisnickiNalogServiceImpl;
 
 @RestController
 @CrossOrigin

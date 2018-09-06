@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import rs.ac.bg.fon.silab.AppKons.entities.Student;
-import rs.ac.bg.fon.silab.AppKons.service.StudentService;
+import rs.ac.bg.fon.silab.AppKons.serviceImpl.StudentServiceImpl;
 import rs.ac.bg.fon.silab.AppKons.dao.StudentDAO;
+import rs.ac.bg.fon.silab.AppKons.service.StudentService;
 
 @RestController
 @RequestMapping("/student")

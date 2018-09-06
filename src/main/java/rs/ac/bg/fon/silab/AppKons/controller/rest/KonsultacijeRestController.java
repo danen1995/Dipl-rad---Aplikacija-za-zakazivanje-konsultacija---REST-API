@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import rs.ac.bg.fon.silab.AppKons.dto.KonsultacijeDTO;
 import rs.ac.bg.fon.silab.AppKons.service.KonsultacijeService;
+import rs.ac.bg.fon.silab.AppKons.serviceImpl.KonsultacijeServiceImpl;
 
 @RestController
 @RequestMapping("/konsultacije")
@@ -48,9 +49,10 @@ public class KonsultacijeRestController {
         List<KonsultacijeDTO> konsZaNastavnika = service.vratiKonsultacijeZaNastavnika(JMBGNastavnika);
         return ResponseEntity.status(HttpStatus.OK).body(konsZaNastavnika);
     }
+
     @GetMapping("/zaNastavnikovKalendar")
     public @ResponseBody
-    Object vratiKonsultacijeZaNastavnikovKalendar(@RequestParam(value = "jmbg") String jmbg, @RequestParam(value = "idKalendara") BigDecimal idKalendara ) {
+    Object vratiKonsultacijeZaNastavnikovKalendar(@RequestParam(value = "jmbg") String jmbg, @RequestParam(value = "idKalendara") BigDecimal idKalendara) {
         List<KonsultacijeDTO> konsZaNastavnika = service.vratiKonsultacijeZaNastavnikovKalendar(jmbg, idKalendara);
         return ResponseEntity.status(HttpStatus.OK).body(konsZaNastavnika);
     }
@@ -85,15 +87,19 @@ public class KonsultacijeRestController {
             for (Date date = start.getTime(); start.before(end); start.add(Calendar.DATE, 1), date = start.getTime()) {
                 System.out.println(date);
                 System.out.println(date.getDay());
-                if (date.getDay()== dan) {
+                if (date.getDay() == dan) {
                     lista.add(df.format(date));
                 }
             }
             return ResponseEntity.status(HttpStatus.OK).body(lista);
 
-
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greska.");
         }
+    }
+
+    @RequestMapping(value = "izbrisi", method = RequestMethod.DELETE)
+    public void izbrisiKonsultacije(@RequestParam BigInteger idKalendara, @RequestParam BigInteger idDogadjaja) {
+        service.izbrisiKonsultacije(idKalendara, idDogadjaja);
     }
 }

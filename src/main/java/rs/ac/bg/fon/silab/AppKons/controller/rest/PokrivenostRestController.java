@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rs.ac.bg.fon.silab.AppKons.dto.PokrivenostNastaveDTO;
 import rs.ac.bg.fon.silab.AppKons.entities.PokrivenostNastave;
 import rs.ac.bg.fon.silab.AppKons.service.PokrivenostService;
+import rs.ac.bg.fon.silab.AppKons.serviceImpl.PokrivenostServiceImpl;
 
 @RestController
 @RequestMapping("/pokrivenost")

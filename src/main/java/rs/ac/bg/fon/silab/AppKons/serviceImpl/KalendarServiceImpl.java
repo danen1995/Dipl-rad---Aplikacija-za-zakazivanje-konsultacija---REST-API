@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rs.ac.bg.fon.silab.AppKons.service;
+package rs.ac.bg.fon.silab.AppKons.serviceImpl;
 
-import rs.ac.bg.fon.silab.AppKons.serviceImpl.*;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +18,27 @@ import rs.ac.bg.fon.silab.AppKons.entities.Konsultacije;
 import rs.ac.bg.fon.silab.AppKons.mapper.GenericMapper;
 import rs.ac.bg.fon.silab.AppKons.dao.KalendarDAO;
 import rs.ac.bg.fon.silab.AppKons.dao.KonsultacijeDAO;
+import rs.ac.bg.fon.silab.AppKons.service.KalendarService;
 
 /**
  *
  * @author Dane
  */
-public interface KalendarService {
+@Service
+public class KalendarServiceImpl implements KalendarService {
 
-    public List<KalendarDTO> vratiKalendareZaNastavnika(String JMBGNastavnika);
+    @Autowired
+    GenericMapper mapper;
+    @Autowired
+    KalendarDAO repository;
+
+    public List<KalendarDTO> vratiKalendareZaNastavnika(String JMBGNastavnika) {
+        List<Kalendar> kons = repository.vratiKalendareZaNastavnika(JMBGNastavnika);
+        List<KalendarDTO> konsDTO = new ArrayList<>();
+        for (Kalendar k : kons) {
+            konsDTO.add(mapper.kalendarToKalendarDTO(k));
+        }
+        return konsDTO;
+    }
 
 }

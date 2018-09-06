@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rs.ac.bg.fon.silab.AppKons.service;
+package rs.ac.bg.fon.silab.AppKons.serviceImpl;
 
-import rs.ac.bg.fon.silab.AppKons.serviceImpl.*;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +18,32 @@ import rs.ac.bg.fon.silab.AppKons.entities.Prilog;
 import rs.ac.bg.fon.silab.AppKons.mapper.GenericMapper;
 import rs.ac.bg.fon.silab.AppKons.dao.KonsultacijeDAO;
 import rs.ac.bg.fon.silab.AppKons.dao.PrilogDAO;
+import rs.ac.bg.fon.silab.AppKons.service.PrilogService;
 
 /**
  *
  * @author Dane
  */
-public interface PrilogService {
+@Service
+public class PrilogServiceImpl implements PrilogService {
 
-    public PrilogDTO dodajPrilog(PrilogDTO prilogDTO);
+    @Autowired
+    GenericMapper mapper;
+    @Autowired
+    PrilogDAO repository;
 
-    public List<PrilogDTO> findAll();
+    public PrilogDTO dodajPrilog(PrilogDTO prilogDTO) {
+        Prilog prilog = mapper.prilogDTOToPrilog(prilogDTO);
+        return mapper.prilogToPrilogDTO(repository.save(prilog));
+    }
+
+    public List<PrilogDTO> findAll() {
+        List<Prilog> prilozi = repository.findAll();
+        List<PrilogDTO> priloziDTO = new ArrayList<>();
+        for (Prilog p : prilozi) {
+            priloziDTO.add(mapper.prilogToPrilogDTO(p));
+        }
+        return priloziDTO;
+    }
 
 }

@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rs.ac.bg.fon.silab.AppKons.service;
+package rs.ac.bg.fon.silab.AppKons.serviceImpl;
 
-import rs.ac.bg.fon.silab.AppKons.serviceImpl.*;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +16,31 @@ import rs.ac.bg.fon.silab.AppKons.entities.Student;
 import rs.ac.bg.fon.silab.AppKons.mapper.GenericMapper;
 import rs.ac.bg.fon.silab.AppKons.dao.KonsultacijeDAO;
 import rs.ac.bg.fon.silab.AppKons.dao.NastavnikDAO;
+import rs.ac.bg.fon.silab.AppKons.service.NastavnikService;
 
 /**
  *
  * @author Dane
  */
-public interface NastavnikService {
+@Service
+public class NastavnikServiceImpl implements NastavnikService {
 
-    public List<NastavnikDTO> findAll();
+    @Autowired
+    GenericMapper mapper;
+    @Autowired
+    NastavnikDAO repository;
 
-    public NastavnikDTO vratiNastavnika(String jmbg);
+    public List<NastavnikDTO> findAll() {
+        List<Nastavnik> nast = repository.findAll();
+        List<NastavnikDTO> nastDTO = new ArrayList<>();
+        for (Nastavnik k : nast) {
+            nastDTO.add(mapper.nastavnikToNastavnikDTO(k));
+        }
+        return nastDTO;
+    }
+
+    public NastavnikDTO vratiNastavnika(String jmbg) {
+        return mapper.nastavnikToNastavnikDTO(repository.findById(jmbg).get());
+    }
 
 }

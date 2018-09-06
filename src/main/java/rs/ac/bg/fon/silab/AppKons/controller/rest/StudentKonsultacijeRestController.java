@@ -20,6 +20,7 @@ import rs.ac.bg.fon.silab.AppKons.dto.StudentKonsultacijeDTO;
 import rs.ac.bg.fon.silab.AppKons.entities.Konsultacije;
 import rs.ac.bg.fon.silab.AppKons.entities.StudentKonsultacije;
 import rs.ac.bg.fon.silab.AppKons.service.StudentKonsultacijeService;
+import rs.ac.bg.fon.silab.AppKons.serviceImpl.StudentKonsultacijeServiceImpl;
 
 @RestController
 @RequestMapping("/zakazaneKonsultacije")

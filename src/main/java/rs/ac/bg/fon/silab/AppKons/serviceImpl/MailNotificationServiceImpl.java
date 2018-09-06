@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rs.ac.bg.fon.silab.AppKons.service;
+package rs.ac.bg.fon.silab.AppKons.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
@@ -17,12 +17,12 @@ import rs.ac.bg.fon.silab.AppKons.dao.KorisnickiNalogDAO;
  * @author Dane
  */
 @Service
-public class MailNotificationService {
+public class MailNotificationServiceImpl {
 
     private JavaMailSender javaMailSender;
 
     @Autowired
-    public MailNotificationService(JavaMailSender javaMailSender) {
+    public MailNotificationServiceImpl(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
 

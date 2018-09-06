@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import rs.ac.bg.fon.silab.AppKons.dto.PrilogDTO;
 import rs.ac.bg.fon.silab.AppKons.service.PrilogService;
+import rs.ac.bg.fon.silab.AppKons.serviceImpl.PrilogServiceImpl;
 
 @RestController
 @RequestMapping("/prilog")

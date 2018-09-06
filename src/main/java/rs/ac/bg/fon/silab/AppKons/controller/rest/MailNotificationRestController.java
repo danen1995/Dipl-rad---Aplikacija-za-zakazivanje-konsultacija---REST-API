@@ -21,9 +21,9 @@ import rs.ac.bg.fon.silab.AppKons.dto.KorisnickiNalogDTO;
 import rs.ac.bg.fon.silab.AppKons.dto.NastavnikDTO;
 import rs.ac.bg.fon.silab.AppKons.dto.UserDTO;
 import rs.ac.bg.fon.silab.AppKons.entities.KorisnickiNalog;
-import rs.ac.bg.fon.silab.AppKons.service.KalendarService;
-import rs.ac.bg.fon.silab.AppKons.service.KorisnickiNalogService;
-import rs.ac.bg.fon.silab.AppKons.service.MailNotificationService;
+import rs.ac.bg.fon.silab.AppKons.serviceImpl.KalendarServiceImpl;
+import rs.ac.bg.fon.silab.AppKons.serviceImpl.KorisnickiNalogServiceImpl;
+import rs.ac.bg.fon.silab.AppKons.serviceImpl.MailNotificationServiceImpl;
 
 @RestController
 @CrossOrigin
@@ -31,7 +31,7 @@ import rs.ac.bg.fon.silab.AppKons.service.MailNotificationService;
 public class MailNotificationRestController {
 
     @Autowired
-    MailNotificationService service;
+    MailNotificationServiceImpl service;
 
     @RequestMapping("/posaljimail")
     public String posaljiMejl(@RequestParam String email) {

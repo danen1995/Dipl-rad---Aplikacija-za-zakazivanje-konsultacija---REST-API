@@ -18,8 +18,9 @@ import rs.ac.bg.fon.silab.AppKons.dto.KonsultacijeDTO;
 import rs.ac.bg.fon.silab.AppKons.dto.NastavnikDTO;
 import rs.ac.bg.fon.silab.AppKons.entities.Nastavnik;
 import rs.ac.bg.fon.silab.AppKons.entities.Student;
-import rs.ac.bg.fon.silab.AppKons.service.KonsultacijeService;
 import rs.ac.bg.fon.silab.AppKons.service.NastavnikService;
+import rs.ac.bg.fon.silab.AppKons.serviceImpl.KonsultacijeServiceImpl;
+import rs.ac.bg.fon.silab.AppKons.serviceImpl.NastavnikServiceImpl;
 
 @RestController
 @RequestMapping("/nastavnik")

@@ -5,6 +5,7 @@
  */
 package rs.ac.bg.fon.silab.AppKons.service;
 
+import rs.ac.bg.fon.silab.AppKons.serviceImpl.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -26,59 +27,22 @@ import rs.ac.bg.fon.silab.AppKons.dao.StudentKonsultacijeDAO;
  *
  * @author Dane
  */
-@Service
-public class StudentKonsultacijeService {
+public interface StudentKonsultacijeService {
 
-    @Autowired
-    GenericMapper mapper;
-    @Autowired
-    StudentKonsultacijeDAO repository;
+    public List<StudentKonsultacije> findAll();
 
-    public List<StudentKonsultacije> findAll() {
-        return repository.findAll();
-    }
+    public StudentKonsultacijeDTO vratiPoIDu(BigInteger idKalendara, BigInteger idDogadjaja, String brojIndeksaStudenta);
 
-    public StudentKonsultacijeDTO vratiPoIDu(BigInteger idKalendara, BigInteger idDogadjaja, String brojIndeksaStudenta) {
-        return mapper.studentKonsultacijeToStudentKonsultacijeDTO(repository.findById(new StudentKonsultacijePK(idKalendara, idDogadjaja, brojIndeksaStudenta)).get());
-    }
+    public List<StudentKonsultacijeDTO> findByBrojIndeksaStudenta(String brojIndeksa);
 
-    public List<StudentKonsultacijeDTO> findByBrojIndeksaStudenta(String brojIndeksa) {
-        List<StudentKonsultacije> studentKons = repository.findByBrojIndeksaStudenta(brojIndeksa);
-        List<StudentKonsultacijeDTO> studentKonsDTO = new ArrayList<>();
-        for (StudentKonsultacije studentKon : studentKons) {
-            studentKonsDTO.add(mapper.studentKonsultacijeToStudentKonsultacijeDTO(studentKon));
-        }
-        return studentKonsDTO;
-    }
+    public List<StudentKonsultacijeDTO> findByJMBGNastavnika(String JMBGNastavnika);
 
-    public List<StudentKonsultacijeDTO> findByJMBGNastavnika(String JMBGNastavnika) {
-        List<StudentKonsultacije> studentKons = repository.findByJMBGNastavnika(JMBGNastavnika);
-        List<StudentKonsultacijeDTO> studentKonsDTO = new ArrayList<>();
-        for (StudentKonsultacije studentKon : studentKons) {
-            studentKonsDTO.add(mapper.studentKonsultacijeToStudentKonsultacijeDTO(studentKon));
-        }
-        return studentKonsDTO;
-    }
+    public void izbrisiStudentKonsultacije(BigInteger idKalendara, BigInteger idDogadjaja, String brojIndeksaStudenta);
 
-    public void izbrisiStudentKonsultacije(BigInteger idKalendara, BigInteger idDogadjaja, String brojIndeksaStudenta) {
-        repository.deleteById(new StudentKonsultacijePK(idKalendara, idDogadjaja, brojIndeksaStudenta));
-    }
+    public StudentKonsultacijeDTO zakazi(StudentKonsultacijeDTO konsultacije);
 
-    public StudentKonsultacijeDTO zakazi(StudentKonsultacijeDTO konsultacije) {
-        return mapper.studentKonsultacijeToStudentKonsultacijeDTO(repository.save(mapper.studentKonsultacijeDTOToStudentKonsultacije(konsultacije)));
-    }
+    public StudentKonsultacijeDTO azurirajKonsultacije(StudentKonsultacijeDTO konsultacije);
 
-    public StudentKonsultacijeDTO azurirajKonsultacije(StudentKonsultacijeDTO konsultacije) {
-        return mapper.studentKonsultacijeToStudentKonsultacijeDTO(repository.save(mapper.studentKonsultacijeDTOToStudentKonsultacije(konsultacije)));
-    }
-
-    public List<StudentKonsultacijeDTO> vratiSveZaDogadjaj(BigDecimal idKalendara, BigInteger idDogadjaja) {
-        List<StudentKonsultacije> studentKons = repository.vratiSveZaDogadjaj(idKalendara, idDogadjaja);
-        List<StudentKonsultacijeDTO> studentKonsDTO = new ArrayList<>();
-        for (StudentKonsultacije studentKon : studentKons) {
-            studentKonsDTO.add(mapper.studentKonsultacijeToStudentKonsultacijeDTO(studentKon));
-        }
-        return studentKonsDTO;
-    }
+    public List<StudentKonsultacijeDTO> vratiSveZaDogadjaj(BigDecimal idKalendara, BigInteger idDogadjaja);
 
 }

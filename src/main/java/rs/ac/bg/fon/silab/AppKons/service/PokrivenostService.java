@@ -5,6 +5,7 @@
  */
 package rs.ac.bg.fon.silab.AppKons.service;
 
+import rs.ac.bg.fon.silab.AppKons.serviceImpl.*;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,26 +21,10 @@ import rs.ac.bg.fon.silab.AppKons.dao.PokrivenostDAO;
  *
  * @author Dane
  */
-@Service
-public class PokrivenostService {
-    @Autowired
-    GenericMapper mapper;
-    @Autowired
-    PokrivenostDAO repository;
+public interface PokrivenostService {
 
-    public List<PokrivenostNastave> findAll() {
-        return repository.findAll();
-    }
+    public List<PokrivenostNastave> findAll();
 
-    public List<PokrivenostNastaveDTO> findByJmbgNastavnika(String JMBGNastavnika) {
-        List<PokrivenostNastave> pokrNast = repository.findByJmbgNastavnika(JMBGNastavnika);
-        List<PokrivenostNastaveDTO> pokrNastDTO = new ArrayList<>();
-        for (PokrivenostNastave pokrivenostNastave : pokrNast) {
-            pokrNastDTO.add(mapper.pokrivenostNastaveToPokrivenostNastaveDTO(pokrivenostNastave));
-        }
-        return pokrNastDTO;
-    }
-    
-    
+    public List<PokrivenostNastaveDTO> findByJmbgNastavnika(String JMBGNastavnika);
 
 }
