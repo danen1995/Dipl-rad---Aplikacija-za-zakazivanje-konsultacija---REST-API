@@ -39,7 +39,7 @@ public class KorisnickiNalogServiceImpl implements KorisnickiNalogService {
         return mapper.korisnickiNalogToKorisnickiNalogDTO(userDAO.login(username, password));
     }
 
-    public KorisnickiNalogDTO register(KorisnickiNalogDTO user) {
+    public KorisnickiNalogDTO registrujSe(KorisnickiNalogDTO user) {
         KorisnickiNalog kor = mapper.korisnickiNalogDTOToKorisnickiNalog(user);
         return mapper.korisnickiNalogToKorisnickiNalogDTO(userDAO.save(kor));
     }

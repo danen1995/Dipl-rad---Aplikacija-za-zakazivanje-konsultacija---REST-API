@@ -18,7 +18,7 @@ public interface KorisnickiNalogService {
 
     public KorisnickiNalogDTO login(String username, String password);
 
-    public KorisnickiNalogDTO register(KorisnickiNalogDTO user);
+    public KorisnickiNalogDTO registrujSe(KorisnickiNalogDTO user);
 
     public KorisnickiNalog findByKorisnickoIme(String korisnickoIme);
 

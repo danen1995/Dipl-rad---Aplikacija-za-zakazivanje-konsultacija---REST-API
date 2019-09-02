@@ -47,16 +47,16 @@ public class KorisnickiNalogRestController {
     public @ResponseBody
     Object register(@RequestBody KorisnickiNalogDTO user) {
         try {
-            return service.register(user);
+            return service.registrujSe(user);
         } catch (Exception ex) {
             System.out.println("Message" + ex.getMessage());
             if (ex.getMessage().contains("[DIPLOMSKI.KORISNICKI_NALOG_UK1]")) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Korisnik sa tim korisnickim imenom vec postoji!");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Došlo je do greške prilikom registracije. Korisnik sa tim korisnickim imenom vec postoji!");
             }
             if (ex.getMessage().contains("[DIPLOMSKI.KORISNICKI_NALOG_UK3]")) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Korisnik sa ovim brojem indeksa je vec registrovan.");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Došlo je do greške prilikom registracije. Korisnik sa ovim brojem indeksa je vec registrovan.");
             } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nepoznata greska! Proverite konekciju.");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Došlo je do greške prilikom registracije. Nepoznata greska! Proverite konekciju.");
 
             }
 
