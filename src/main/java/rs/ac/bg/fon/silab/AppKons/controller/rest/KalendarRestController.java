@@ -41,4 +41,8 @@ public class KalendarRestController {
         return ResponseEntity.status(HttpStatus.OK).body(kalendariDTO);
     }
 
+    @RequestMapping(value = "/dummy", method = RequestMethod.GET)
+    public ResponseEntity<String> dummyEndpoint() {
+        return ResponseEntity.ok("🚀 Dummy endpoint is live!");
+    }
 }
