@@ -1,0 +1,42 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: 🐧 Deploy to EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 📦 Download JAR from build
+        uses: actions/download-artifact@v4
+        with:
+          name: konsultacije-app
+
+      - name: 🔐 Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_KEY }}" > ~/.ssh/ec2_key.pem
+          chmod 600 ~/.ssh/ec2_key.pem
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      - name: 🚀 Deploy to EC2
+        run: |
+          scp -i ~/.ssh/ec2_key.pem target/*.jar ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/konsultacije-app.jar
+          ssh -i ~/.ssh/ec2_key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+            docker stop konsultacije-app || true
+            docker rm konsultacije-app || true
+            docker run -d --name konsultacije-app -p 8083:8083 \
+              -e SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/konsultacije \
+              -e SPRING_DATASOURCE_USERNAME=postgres \
+              -e SPRING_DATASOURCE_PASSWORD=postgres \
+              -e SPRING_MAIL_USERNAME=konsultacije.fon@gmail.com \
+              -e SPRING_MAIL_PASSWORD=konsultacije.fon123 \
+              amazoncorretto:8 java -jar konsultacije-app.jar
+          EOF
