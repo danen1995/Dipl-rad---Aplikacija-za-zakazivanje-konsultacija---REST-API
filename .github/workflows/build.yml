@@ -1,28 +1,30 @@
-name: Build and Upload Jar
+name: Build and Upload JAR
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout project
+      - name: ⬇️ Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Java 8
+      - name: ☕ Set up JDK 8 (Amazon Corretto)
         uses: actions/setup-java@v3
         with:
           java-version: '8'
           distribution: 'corretto'
 
-      - name: Build with Maven
+      - name: 🧱 Build with Maven
         run: mvn clean package -DskipTests
 
-      - name: Upload JAR as artifact
+      - name: 📦 Upload JAR artifact
         uses: actions/upload-artifact@v3
         with:
-          name: konsultacije-jar
+          name: konsultacije-app
           path: target/*.jar
