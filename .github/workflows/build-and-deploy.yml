@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: 🔧 Build JAR
+    name: ⚖️ Build JAR
     runs-on: ubuntu-latest
 
     steps:
@@ -30,7 +30,7 @@ jobs:
           path: target/*.jar
 
   deploy:
-    name: 🐧 Deploy to EC2
+    name: 🐧 Deploy to EC2 with Docker Compose
     runs-on: ubuntu-latest
     needs: build
 
@@ -47,17 +47,11 @@ jobs:
           chmod 600 ~/.ssh/ec2_key.pem
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
-      - name: 🚀 Deploy to EC2
+      - name: 🚀 Deploy and Restart Docker Compose
         run: |
-          scp -i ~/.ssh/ec2_key.pem *.jar ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/konsultacije-app.jar
+          scp -i ~/.ssh/ec2_key.pem *.jar ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/ubuntu/konsultacije-app.jar
           ssh -i ~/.ssh/ec2_key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-            docker stop konsultacije-app || true
-            docker rm konsultacije-app || true
-            docker run -d --name konsultacije-app -p 8083:8083 \
-              -e SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/konsultacije \
-              -e SPRING_DATASOURCE_USERNAME=postgres \
-              -e SPRING_DATASOURCE_PASSWORD=postgres \
-              -e SPRING_MAIL_USERNAME=konsultacije.fon@gmail.com \
-              -e SPRING_MAIL_PASSWORD=konsultacije.fon123 \
-              amazoncorretto:8 java -jar konsultacije-app.jar
+            cd ~/konsultacije-deploy
+            docker compose down
+            docker compose up -d --build
           EOF
