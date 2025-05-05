@@ -49,7 +49,7 @@ jobs:
 
       - name: 🚀 Deploy and Restart Docker Compose
         run: |
-          scp -i ~/.ssh/ec2_key.pem *.jar ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/ubuntu/konsultacije-app.jar
+          scp -i ~/.ssh/ec2_key.pem *.jar ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/konsultacije-deploy/konsultacije-app.jar
           ssh -i ~/.ssh/ec2_key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
             cd ~/konsultacije-deploy
             docker compose down
