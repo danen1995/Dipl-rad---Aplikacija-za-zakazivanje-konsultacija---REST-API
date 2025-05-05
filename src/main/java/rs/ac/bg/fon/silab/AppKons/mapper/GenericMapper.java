@@ -80,8 +80,6 @@ public interface GenericMapper {
 
     PredmetDTO predmetToPredmetDTO(Predmet predmet);
 
-    Prilog prilogDTOToPrilog(PrilogDTO predmetDTO);
-
     PrilogDTO prilogToPrilogDTO(Prilog predmet);
 
     Kalendar kalendarDTOToKalendar(KalendarDTO kalendarDTO);
@@ -112,4 +110,11 @@ public interface GenericMapper {
 
     StudentKonsultacijePKDTO studentKonsultacijePKToStudentKonsultacijePKDTO(StudentKonsultacijePK studentKonsultacijePK);
 
+    default String map(byte[] bytes) {
+        return bytes != null ? new String(bytes) : null;
+    }
+
+    default byte[] map(String value) {
+        return value != null ? value.getBytes() : null;
+    }
 }
